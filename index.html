@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ficha de Estudo — Redes Sociais para Iniciantes</title>
+<style>
+    :root{
+      --bg:#f3f6fb;
+      --paper:#ffffff;
+      --ink:#172033;
+      --muted:#5b667a;
+      --line:#dce3ef;
+      --primary:#3157d5;
+      --primary-dark:#1d3694;
+      --accent:#ff6b35;
+      --soft:#eef3ff;
+      --soft2:#fff4ec;
+      --ok:#18794e;
+      --warn:#9b5b00;
+      --danger:#a61b1b;
+      --shadow:0 18px 45px rgba(20,31,56,.12);
+      --radius:22px;
+      --topbar-h:70px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(49,87,213,.12), transparent 34rem),
+        radial-gradient(circle at top right, rgba(255,107,53,.10), transparent 32rem),
+        var(--bg);
+      line-height:1.68;
+      overflow:hidden;
+    }
+    a{color:var(--primary); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .topbar {
+      height: var(--topbar-h);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 1360px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .topbar .brand {
+      font-weight: 900;
+      color: var(--primary-dark);
+      letter-spacing: 0.01em;
+      font-size: 1.02rem;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: none;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #2f3a44;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .book-app {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 14px 18px 18px;
+      height: calc(100dvh - var(--topbar-h));
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .sidebar {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      overflow: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 1.02rem;
+      margin: 0 0 8px;
+      color: #302116;
+    }
+
+    .sidebar p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .sidebar-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .sidebar-nav a {
+      text-decoration: none;
+      color: #2f2a24;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      border-color: rgba(49, 87, 213, 0.35);
+      color: var(--primary);
+      transform: translateX(2px);
+      background: #f8fbff;
+    }
+
+    .viewer {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .viewer-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: linear-gradient(110deg, #223a9a, #142762);
+      color: #e8efff;
+      border: 1px solid rgba(173, 197, 255, 0.3);
+      border-radius: 999px;
+      padding: 8px 10px;
+      box-shadow: 0 10px 22px rgba(18, 33, 80, 0.28);
+    }
+
+    .viewer-status {
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .viewer-preference {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #e8efff;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .viewer-preference select {
+      appearance: none;
+      border: 1px solid rgba(173, 197, 255, 0.36);
+      background: rgba(255, 255, 255, 0.1);
+      color: #e8efff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .viewer-preference select option {
+      color: #1f2f4d;
+      background: #fff;
+    }
+
+    .viewer-toolbar button {
+      appearance: none;
+      border: 1px solid rgba(173, 197, 255, 0.36);
+      background: rgba(255, 255, 255, 0.08);
+      color: #e8efff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .viewer-toolbar button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .viewer-stage {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .page{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      background:var(--paper);
+      border-radius:var(--radius);
+      overflow:hidden;
+      padding:0;
+      transition:opacity 0.28s ease;
+    }
+
+    .page.active {
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    .page-content {
+      width: 100%;
+      padding: 42px;
+      transform-origin: top left;
+      will-change: transform;
+    }
+
+    .viewer-stage.mode-reading .page.active {
+      overflow: auto;
+    }
+
+    .viewer-stage.mode-fit .page.active {
+      overflow: hidden;
+    }
+
+    .page-content.tight-mode {
+      font-size: 0.94em;
+    }
+
+    .scale-note {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      background: rgba(23, 32, 51, 0.72);
+      color: #fff;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.74rem;
+      z-index: 20;
+      display: none;
+    }
+
+    .viewer-stage.is-scaled .scale-note {
+      display: inline-flex;
+    }
+
+    .cover{
+      color:#fff;
+      background:
+        linear-gradient(135deg, rgba(11,25,67,.97), rgba(49,87,213,.93)),
+        radial-gradient(circle at 84% 18%, rgba(255,255,255,.18), transparent 18rem);
+    }
+
+    .cover > .page-content {
+      min-height:640px;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:34px;
+      align-items:center;
+    }
+    .cover:before{
+      content:"";
+      position:absolute; inset:auto -130px -180px auto;
+      width:520px;height:520px;border-radius:50%;
+      background:rgba(255,255,255,.08);
+    }
+    .cover h1{
+      font-size:clamp(2.3rem, 5vw, 5.2rem);
+      line-height:1.02;
+      margin:0 0 22px;
+      letter-spacing:-.05em;
+    }
+    .cover .subtitle{
+      font-size:1.35rem;
+      color:#dbe4ff;
+      max-width:700px;
+      margin-bottom:28px;
+    }
+    .cover .meta{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:28px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.22);
+      color:inherit;
+      font-weight:650;
+      font-size:.92rem;
+    }
+    .cover-art{
+      position:relative;
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .network-orbit{
+      width:min(430px, 100%);
+      aspect-ratio:1;
+      border-radius:50%;
+      position:relative;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.12) 0 18%, transparent 19%),
+        radial-gradient(circle, transparent 0 43%, rgba(255,255,255,.14) 44% 44.7%, transparent 45%),
+        radial-gradient(circle, transparent 0 66%, rgba(255,255,255,.12) 67% 67.7%, transparent 68%);
+    }
+    .node{
+      position:absolute;
+      width:74px;height:74px;
+      border-radius:24px;
+      display:grid;place-items:center;
+      background:#fff;
+      color:var(--primary-dark);
+      font-size:1.65rem;
+      font-weight:900;
+      box-shadow:0 18px 40px rgba(0,0,0,.25);
+    }
+    .node small{font-size:.72rem;display:block}
+    .n1{left:50%;top:0;transform:translateX(-50%)}
+    .n2{right:5%;top:26%}
+    .n3{right:15%;bottom:8%}
+    .n4{left:15%;bottom:8%}
+    .n5{left:5%;top:26%}
+    .n6{left:50%;top:50%;transform:translate(-50%,-50%); background:var(--accent); color:#fff; width:92px;height:92px;border-radius:30px}
+    .page h2{
+      font-size:2rem;
+      line-height:1.18;
+      margin:0 0 18px;
+      letter-spacing:-.025em;
+      color:#111a2c;
+    }
+    .page h3{
+      font-size:1.35rem;
+      margin:34px 0 12px;
+      line-height:1.25;
+      color:#1c2a44;
+    }
+    .page h4{
+      font-size:1.05rem;
+      margin:24px 0 8px;
+      color:#243653;
+    }
+    .eyebrow{
+      color:var(--primary);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      font-size:.78rem;
+      margin-bottom:8px;
+    }
+    .lead{
+      font-size:1.15rem;
+      color:#354057;
+      max-width:920px;
+    }
+    .toc{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;
+      counter-reset:item;
+      margin-top:24px;
+    }
+    .toc a{
+      display:flex; gap:14px; align-items:flex-start;
+      border:1px solid var(--line);
+      padding:14px;
+      border-radius:16px;
+      color:var(--ink);
+      background:#fff;
+    }
+    .toc a:before{
+      counter-increment:item;
+      content:counter(item, decimal-leading-zero);
+      min-width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      background:var(--soft);
+      color:var(--primary);
+      font-weight:900;
+      font-size:.88rem;
+    }
+    .toc b{display:block}
+    .toc span{display:block;color:var(--muted);font-size:.92rem}
+    .grid{
+      display:grid;
+      gap:16px;
+    }
+    .grid.two{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .grid.three{grid-template-columns:repeat(3, minmax(0,1fr))}
+    .grid.four{grid-template-columns:repeat(4, minmax(0,1fr))}
+    .card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:#fff;
+    }
+    .card.soft{background:var(--soft)}
+    .card.orange{background:var(--soft2)}
+    .card h4{margin-top:0}
+    .callout{
+      border-left:6px solid var(--primary);
+      background:var(--soft);
+      border-radius:16px;
+      padding:18px 20px;
+      margin:22px 0;
+    }
+    .callout.warn{border-left-color:var(--warn); background:#fff7e8}
+    .callout.danger{border-left-color:var(--danger); background:#fff0f0}
+    .callout.ok{border-left-color:var(--ok); background:#eefaf4}
+    .checklist{
+      list-style:none;
+      padding:0;
+      margin:14px 0 0;
+    }
+    .checklist li{
+      padding:10px 0 10px 34px;
+      border-bottom:1px solid rgba(220,227,239,.75);
+      position:relative;
+    }
+    .checklist li:before{
+      content:"✓";
+      position:absolute;left:0;top:10px;
+      width:23px;height:23px;border-radius:50%;
+      background:#e8f6ef;color:var(--ok);
+      display:grid;place-items:center;
+      font-weight:900;font-size:.82rem;
+    }
+    .steps{
+      counter-reset:step;
+      display:grid;
+      gap:12px;
+      margin:18px 0;
+    }
+    .step{
+      counter-increment:step;
+      display:grid;
+      grid-template-columns:48px 1fr;
+      gap:14px;
+      align-items:start;
+      border:1px solid var(--line);
+      background:#fff;
+      padding:14px;
+      border-radius:16px;
+    }
+    .step:before{
+      content:counter(step);
+      width:40px;height:40px;border-radius:14px;
+      display:grid;place-items:center;
+      background:var(--primary);
+      color:#fff;
+      font-weight:900;
+    }
+    .table-wrap{overflow:auto; border:1px solid var(--line); border-radius:18px; margin:18px 0}
+    table{border-collapse:collapse; width:100%; min-width:720px; background:#fff}
+    th,td{padding:13px 14px; border-bottom:1px solid var(--line); vertical-align:top; text-align:left}
+    th{background:#f4f7fc; color:#22314d}
+    tr:last-child td{border-bottom:0}
+    .caption{font-size:.9rem;color:var(--muted);margin-top:8px}
+    .figure{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:linear-gradient(180deg,#fff,#f6f8fc);
+      padding:18px;
+      margin:22px 0;
+    }
+    .figure-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color:#32415c;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+    .desktop-ui{
+      border:1px solid #cfd8e7;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 12px 24px rgba(35,47,72,.08);
+    }
+    .browser-bar{
+      height:48px;
+      display:flex;align-items:center;gap:8px;
+      background:#eef2f8;
+      border-bottom:1px solid #d6deeb;
+      padding:0 14px;
+    }
+    .dot{width:11px;height:11px;border-radius:50%;background:#c4ccda}
+    .url{
+      flex:1;height:28px;border-radius:999px;background:#fff;
+      border:1px solid #d6deeb;
+      display:flex;align-items:center;
+      color:#6a7488;font-size:.78rem;
+      padding:0 12px;
+    }
+    .feed-ui{
+      display:grid;grid-template-columns:190px 1fr 220px;gap:14px;padding:16px;
+      min-height:300px;
+    }
+    .side-menu,.right-panel,.post-card{
+      border:1px solid #e2e8f2;border-radius:16px;background:#fff;padding:13px;
+    }
+    .menu-line,.text-line{
+      height:12px;border-radius:999px;background:#e8eef7;margin:10px 0;
+    }
+    .post-card{margin-bottom:14px}
+    .avatar{width:42px;height:42px;border-radius:14px;background:#dce6ff;display:inline-block;vertical-align:middle;margin-right:10px}
+    .image-placeholder{
+      height:120px;border-radius:14px;background:linear-gradient(135deg,#dce6ff,#fff0e7);margin:14px 0;
+      display:flex;align-items:center;justify-content:center;color:#52617a;font-weight:800;
+    }
+    .phone{
+      width:270px; max-width:100%;
+      border:10px solid #172033;
+      border-radius:38px;
+      background:#111;
+      padding:10px;
+      margin:auto;
+      box-shadow:0 20px 42px rgba(23,32,51,.22);
+    }
+    .phone-screen{
+      background:#f8fafc;
+      border-radius:26px;
+      min-height:500px;
+      overflow:hidden;
+    }
+    .phone-top{
+      height:44px;background:#fff;border-bottom:1px solid #e5eaf3;
+      display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.86rem;
+    }
+    .app-grid{
+      display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;padding:22px;
+    }
+    .app{
+      display:grid;place-items:center;text-align:center;gap:6px;
+      color:#39445b;font-weight:700;font-size:.75rem;
+    }
+    .app-icon{
+      width:52px;height:52px;border-radius:18px;
+      display:grid;place-items:center;
+      color:#fff;font-size:1.15rem;font-weight:900;
+      background:var(--primary);
+    }
+    .social-card{
+      display:grid;
+      grid-template-columns:58px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .social-brand{
+      width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+      color:#fff;font-weight:900;font-size:1.25rem;
+      background:linear-gradient(135deg,var(--primary),#7e9bff);
+    }
+    .social-brand.ig{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af)}
+    .social-brand.yt{background:#e62117}
+    .social-brand.tt{background:#111}
+    .social-brand.wa{background:#128c7e}
+    .social-brand.in{background:#0a66c2}
+    .social-brand.x{background:#111}
+    .social-brand.pin{background:#bd081c}
+    .social-brand.th{background:#222}
+    .mini-flow{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:12px;
+      align-items:stretch;
+      margin:22px 0;
+    }
+    .flow-item{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:15px;
+      min-height:120px;
+      background:#fff;
+    }
+    .flow-item:not(:last-child):after{
+      content:"→";
+      position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+      color:var(--primary);font-weight:900;
+      background:var(--bg);
+      width:26px;height:26px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid var(--line);
+    }
+    .flow-item b{display:block;color:#1f2f4d}
+    .badge{
+      display:inline-block;
+      padding:3px 8px;border-radius:999px;
+      background:#eef3ff;color:var(--primary);
+      font-size:.78rem;font-weight:800;
+    }
+    .danger-list li:before{background:#fff0f0;color:var(--danger);content:"!"}
+    .references li{margin-bottom:10px}
+    .footer-note{
+      color:var(--muted);
+      font-size:.9rem;
+      border-top:1px solid var(--line);
+      padding-top:16px;
+      margin-top:30px;
+    }
+    .print-break{break-before:page}
+    @media (max-width:1080px){
+      body{overflow:auto}
+      .nav{display:flex}
+      .book-app{height:auto;grid-template-columns:1fr}
+      .sidebar{display:none}
+      .viewer-stage{min-height:75vh}
+      .page{
+        position:relative;
+        inset:auto;
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+      }
+      .page-content{
+        transform:none !important;
+        width:auto !important;
+      }
+      .viewer-toolbar,
+      .viewer-preference,
+      .scale-note{display:none !important}
+    }
+
+    @media (max-width:900px){
+      .cover > .page-content{grid-template-columns:1fr; min-height:auto}
+      .toc,.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}
+      .feed-ui{grid-template-columns:1fr}
+      .side-menu,.right-panel{display:none}
+      .mini-flow{grid-template-columns:1fr}
+      .flow-item:not(:last-child):after{display:none}
+      .page-content{padding:26px}
+    }
+    @media print{
+      body{background:#fff;overflow:visible}
+      .topbar,.sidebar,.viewer-toolbar,.scale-note{display:none}
+      .book-app,.viewer,.viewer-stage,.book{display:block;height:auto;overflow:visible;box-shadow:none;border:none;padding:0;margin:0}
+      .page{position:static;opacity:1;visibility:visible;box-shadow:none;border:0;border-radius:0;break-after:page}
+      .cover > .page-content{min-height:100vh}
+      .page-content{transform:none !important;width:auto !important;padding:30px}
+      a{text-decoration:none;color:inherit}
+      .toc a{break-inside:avoid}
+      .card,.figure,.callout,.step{break-inside:avoid}
+    }
+  
+
+/* Componentes de ficha de estudo */
+.study-card,
+.answer-card,
+.project-brief,
+.rubric,
+.review-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 18px;
+  box-shadow: 0 8px 22px rgba(20,31,56,.05);
+  margin: 16px 0;
+}
+
+.study-card h3:first-child,
+.answer-card h3:first-child,
+.project-brief h3:first-child,
+.review-box h3:first-child {
+  margin-top: 0;
+}
+
+.study-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.study-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.answer-card strong {
+  color: var(--primary-dark);
+}
+
+.answer-box {
+  min-height: 78px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1.5px dashed rgba(49,87,213,.35);
+  border-radius: 14px;
+  background:
+    linear-gradient(transparent 31px, rgba(49,87,213,.08) 32px),
+    #fff;
+  color: #172033;
+  outline: none;
+  white-space: pre-wrap;
+}
+
+.answer-box:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(49,87,213,.12);
+  background:
+    linear-gradient(transparent 31px, rgba(49,87,213,.10) 32px),
+    #ffffff;
+}
+
+.answer-box:empty::before {
+  content: attr(data-placeholder);
+  color: #7a8598;
+}
+
+.save-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eef3ff;
+  color: var(--primary-dark);
+  font-size: .82rem;
+  font-weight: 800;
+  margin: 8px 0 12px;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.quiz-item {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  padding: 14px;
+}
+
+.quiz-item b {
+  color: var(--primary);
+}
+
+.rubric table {
+  min-width: 0;
+}
+
+.self-check {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.self-check label {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.self-check input {
+  width: 19px;
+  height: 19px;
+  margin-top: 3px;
+  accent-color: var(--primary);
+}
+
+.badge-soft {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: .78rem;
+  font-weight: 800;
+  margin: 0 5px 6px 0;
+}
+
+@media (max-width:900px) {
+  .study-grid,
+  .study-grid.three,
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<div class="brand">Ficha de Estudo — Redes Sociais</div>
+<nav aria-label="Navegação da apostila" class="nav"><a href="#sumario">Roteiro</a><a href="#diagnostico">Diagnóstico</a><a href="#conceito">Conceitos</a><a href="#plataformas">Plataformas</a><a href="#privacidade">Privacidade</a><a href="#golpes">Golpes</a><a href="#projeto-final">Projeto</a></nav>
+</div>
+</header>
+<main class="book-app">
+<aside aria-label="Sumário lateral" class="sidebar">
+<h2>Sumário</h2>
+<p>Selecione uma seção da ficha para exibir no painel de leitura.</p>
+<nav class="sidebar-nav" id="sidebarNav"><a href="#capa">Capa</a><a href="#orientacoes">Orientações de estudo</a><a href="#diagnostico">Diagnóstico inicial</a><a href="#sumario">Roteiro de estudo</a><a href="#conceito">1. O que são redes sociais</a><a href="#historia">2. Evolução das redes sociais</a><a href="#vocabulario">3. Vocabulário essencial</a><a href="#navegador-app">4. Navegador e aplicativo</a><a href="#perfil">5. Perfil e identidade digital</a><a href="#publicar">6. Publicar e interagir</a><a href="#plataformas">7. Principais plataformas</a><a href="#tutoriais">8. Tutoriais básicos</a><a href="#privacidade">9. Privacidade e segurança</a><a href="#golpes">10. Golpes e riscos</a><a href="#boas-praticas">11. Boas práticas</a><a href="#atividades">12. Atividades práticas</a><a href="#estudo-dirigido">13. Estudo dirigido</a><a href="#projeto-final">14. Projeto final</a><a href="#autoavaliacao">15. Autoavaliação</a><a href="#glossario">Glossário e referências</a></nav>
+</aside>
+<section aria-label="Área de exibição da apostila" class="viewer">
+<div class="viewer-toolbar">
+<button id="prevPage" type="button">◀ Anterior</button>
+<div class="viewer-status" id="viewerStatus">Seção 1 de 1</div>
+<label class="viewer-preference" for="scalePreference">
+          Exibição:
+          <select id="scalePreference">
+<option selected="" value="reading">Modo leitura</option>
+<option value="fit">Modo reduzido</option>
+</select>
+</label>
+<button id="nextPage" type="button">Próximo ▶</button>
+</div>
+<div class="viewer-stage" id="viewerStage">
+<div class="scale-note" id="scaleNote">Ajuste automático para caber na tela</div>
+<div class="book" id="bookPages">
+<section class="page cover" id="capa">
+<div>
+<div class="eyebrow" style="color:#ffcfbd">Ficha de estudo para iniciantes</div>
+<h1>Ficha de Estudo: Redes Sociais</h1>
+<p class="subtitle">Material amplo e detalhado para estudar conceitos, vocabulário, plataformas, publicações, identidade digital, segurança, privacidade, golpes, boas práticas e uso responsável das redes sociais.</p>
+<div class="meta"><span class="pill">Conceitos essenciais</span><span class="pill">Atividades guiadas</span><span class="pill">Campos editáveis</span><span class="pill">Segurança digital</span><span class="pill">Projeto final</span></div>
+<p style="color:#cfd9ff;margin-top:34px">Use esta ficha para leitura, revisão, prática em sala de aula e autoavaliação.</p>
+</div>
+<div aria-label="Ilustração de rede social" class="cover-art">
+<div class="network-orbit">
+<div class="node n1">F</div>
+<div class="node n2">IG</div>
+<div class="node n3">YT</div>
+<div class="node n4">WA</div>
+<div class="node n5">TT</div>
+<div class="node n6">SOCIAL</div>
+</div>
+</div>
+</section><section class="page" id="orientacoes">
+<div class="eyebrow">Como usar a ficha</div>
+<h2>Orientações de estudo</h2>
+<p class="lead">Esta ficha transforma a apostila em um material de estudo ativo. O aluno não deve apenas ler: deve observar, responder, comparar, praticar e revisar. A proposta é desenvolver autonomia para usar redes sociais com consciência, segurança e finalidade clara.</p>
+<div class="study-grid three">
+<div class="study-card">
+<span class="badge-soft">1. Ler</span>
+<h3>Compreensão inicial</h3>
+<p>Leia cada seção procurando identificar os conceitos principais. Marque palavras que aparecem muitas vezes, como perfil, feed, algoritmo, privacidade, publicação, interação e golpe.</p>
+</div>
+<div class="study-card">
+<span class="badge-soft">2. Responder</span>
+<h3>Registro do aluno</h3>
+<p>Use as caixas editáveis para escrever respostas com suas próprias palavras. As respostas ficam salvas no navegador e podem ser alteradas sempre que necessário.</p>
+</div>
+<div class="study-card">
+<span class="badge-soft">3. Praticar</span>
+<h3>Aplicação orientada</h3>
+<p>Realize as atividades em um perfil de teste, em uma conta pessoal com cuidado ou apenas em simulação, dependendo da orientação do professor.</p>
+</div>
+</div>
+<div class="callout ok">
+<strong>Critério de estudo:</strong> o aluno demonstra domínio quando consegue explicar o conceito, reconhecer o recurso na interface, usar o recurso com segurança e justificar quando não deve usar determinado botão ou configuração.
+  </div>
+<h3>Roteiro recomendado</h3>
+<div class="steps">
+<div class="step"><div><strong>Faça o diagnóstico inicial.</strong><br/>Responda sem consultar. O objetivo é identificar o que você já sabe e o que precisa desenvolver.</div></div>
+<div class="step"><div><strong>Estude os conceitos e o vocabulário.</strong><br/>Antes de publicar ou configurar, entenda os termos usados pelas plataformas.</div></div>
+<div class="step"><div><strong>Compare navegador e aplicativo.</strong><br/>Observe como a mesma rede social muda quando usada no computador e no smartphone.</div></div>
+<div class="step"><div><strong>Pratique segurança e privacidade.</strong><br/>Revise senha, autenticação em duas etapas, visibilidade de publicações e permissões do aplicativo.</div></div>
+<div class="step"><div><strong>Finalize com o projeto prático.</strong><br/>Monte um plano de uso consciente de uma rede social, incluindo objetivo, público, conteúdo e cuidados.</div></div>
+</div>
+</section><section class="page" id="diagnostico">
+<div class="eyebrow">Antes de estudar</div>
+<h2>Diagnóstico inicial</h2>
+<p class="lead">Responda antes de ler a ficha inteira. O objetivo não é acertar tudo, mas registrar seu ponto de partida. Depois da aula, volte a esta página e compare sua evolução.</p>
+<div class="save-hint">As respostas são salvas automaticamente neste navegador.</div>
+<div class="quiz-grid">
+<div class="quiz-item"><b>1. O que é uma rede social?</b><div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-diag-1"></div></div>
+<div class="quiz-item"><b>2. Qual é a diferença entre perfil público e perfil privado?</b><div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-diag-2"></div></div>
+<div class="quiz-item"><b>3. O que é feed?</b><div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-diag-3"></div></div>
+<div class="quiz-item"><b>4. O que significa seguir uma pessoa ou canal?</b><div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-diag-4"></div></div>
+<div class="quiz-item"><b>5. Cite dois cuidados antes de publicar uma foto.</b><div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-diag-5"></div></div>
+<div class="quiz-item"><b>6. O que é autenticação em duas etapas?</b><div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-diag-6"></div></div>
+</div>
+<div class="callout warn">
+<strong>Reflexão inicial:</strong> redes sociais não são neutras. Elas organizam conteúdos, estimulam interações, coletam dados e influenciam o que o usuário vê. Estudar redes sociais também é estudar comportamento digital.
+  </div>
+</section>
+<section class="page" id="apresentacao">
+<div class="eyebrow">Apresentação</div>
+<h2>Objetivo da apostila</h2>
+<p class="lead">Esta apostila foi criada para pessoas que estão começando a usar redes sociais e precisam entender, com segurança, como funcionam perfis, publicações, comentários, mensagens, seguidores, grupos, vídeos, aplicativos e configurações de privacidade.</p>
+<p>O foco não é formar especialistas em marketing digital. O objetivo principal é preparar o aluno para usar as redes sociais de forma básica, consciente e segura, tanto pelo navegador do computador quanto pelos aplicativos instalados no smartphone.</p>
+<div class="callout ok">
+<strong>Ao final do estudo, o aluno deverá ser capaz de:</strong>
+<ul class="checklist">
+<li>Compreender o que são redes sociais e para que servem.</li>
+<li>Diferenciar perfil, página, canal, grupo, comunidade e mensagem direta.</li>
+<li>Acessar redes sociais pelo navegador e pelo aplicativo.</li>
+<li>Publicar, curtir, comentar, compartilhar, salvar e seguir conteúdos.</li>
+<li>Configurar privacidade, segurança e recuperação de conta.</li>
+<li>Identificar golpes, perfis falsos, links suspeitos e tentativas de manipulação.</li>
+</ul>
+</div>
+</section>
+<section class="page" id="sumario">
+<div class="eyebrow">Roteiro da ficha</div>
+<h2>Roteiro de estudo</h2>
+<p class="lead">A sequência abaixo organiza o conteúdo em blocos de aprendizagem. Cada bloco combina leitura, revisão, atividade prática e registro de resposta.</p>
+<nav class="toc">
+<a href="#orientacoes"><div><b>Orientações de estudo</b><span>Como usar a ficha, como responder e como praticar.</span></div></a>
+<a href="#diagnostico"><div><b>Diagnóstico inicial</b><span>Questões para identificar conhecimentos prévios.</span></div></a>
+<a href="#conceito"><div><b>1. O que são redes sociais</b><span>Conceito, finalidade, exemplos cotidianos e função social.</span></div></a>
+<a href="#historia"><div><b>2. Breve evolução das redes sociais</b><span>Da internet participativa aos aplicativos móveis e à personalização por IA.</span></div></a>
+<a href="#vocabulario"><div><b>3. Vocabulário essencial</b><span>Perfil, feed, post, direct, hashtag, algoritmo, stories e vídeos curtos.</span></div></a>
+<a href="#navegador-app"><div><b>4. Navegador e aplicativo</b><span>Comparação entre uso no computador e no smartphone.</span></div></a>
+<a href="#perfil"><div><b>5. Perfil e identidade digital</b><span>Foto, bio, nome de usuário, visibilidade e exposição.</span></div></a>
+<a href="#publicar"><div><b>6. Publicar e interagir</b><span>Objetivo, público, revisão, curtidas, comentários e compartilhamento.</span></div></a>
+<a href="#plataformas"><div><b>7. Principais plataformas</b><span>Facebook, Instagram, WhatsApp, YouTube, TikTok, LinkedIn e outras.</span></div></a>
+<a href="#tutoriais"><div><b>8. Tutoriais básicos</b><span>Acesso pelo navegador, aplicativo e cuidados antes de entrar.</span></div></a>
+<a href="#privacidade"><div><b>9. Privacidade e segurança</b><span>Senhas, autenticação, bloqueio, denúncia e permissões.</span></div></a>
+<a href="#golpes"><div><b>10. Golpes e riscos</b><span>Phishing, perfis falsos, falsas promoções e engenharia social.</span></div></a>
+<a href="#boas-praticas"><div><b>11. Boas práticas</b><span>Comportamento digital, reputação, direitos autorais e convivência.</span></div></a>
+<a href="#atividades"><div><b>12. Atividades práticas</b><span>Exercícios de fixação e simulações de uso.</span></div></a>
+<a href="#estudo-dirigido"><div><b>13. Estudo dirigido</b><span>Questões analíticas para consolidar o aprendizado.</span></div></a>
+<a href="#projeto-final"><div><b>14. Projeto final</b><span>Planejamento de uso consciente de uma rede social.</span></div></a>
+<a href="#autoavaliacao"><div><b>15. Autoavaliação</b><span>Checklist de domínio e reflexão final.</span></div></a>
+<a href="#glossario"><div><b>Glossário e referências</b><span>Termos essenciais e fontes utilizadas.</span></div></a>
+</nav>
+</section>
+<section class="page" id="conceito">
+<div class="eyebrow">Capítulo 1</div>
+<h2>O que são redes sociais?</h2>
+<p>Redes sociais são ambientes digitais criados para conectar pessoas, grupos, marcas, instituições e comunidades. Elas permitem compartilhar informações, fotos, vídeos, opiniões, mensagens, experiências e interesses. Em vez de o usuário apenas assistir ou ler conteúdos, ele também pode participar, publicar, comentar, reagir e conversar.</p>
+<p>Na prática, uma rede social funciona como uma praça digital. Nessa praça, cada pessoa pode ter um perfil, seguir outras pessoas, participar de grupos, assistir vídeos, divulgar trabalhos, encontrar notícias, conversar com familiares, pesquisar assuntos, aprender algo novo ou acompanhar empresas e instituições.</p>
+<div class="figure">
+<div class="figure-title">Ilustração: rede social como espaço de conexão</div>
+<div class="mini-flow">
+<div class="flow-item"><span class="badge">1</span><b>Pessoa</b><p>Cria um perfil com nome, foto e informações básicas.</p></div>
+<div class="flow-item"><span class="badge">2</span><b>Conteúdo</b><p>Publica texto, foto, vídeo, áudio, link ou comentário.</p></div>
+<div class="flow-item"><span class="badge">3</span><b>Interação</b><p>Outras pessoas curtem, comentam, salvam ou compartilham.</p></div>
+<div class="flow-item"><span class="badge">4</span><b>Algoritmo</b><p>A plataforma organiza o que aparece no feed do usuário.</p></div>
+<div class="flow-item"><span class="badge">5</span><b>Comunidade</b><p>Pessoas com interesses parecidos se aproximam.</p></div>
+</div>
+</div>
+<h3>Para que as redes sociais servem?</h3>
+<div class="grid three">
+<div class="card"><h4>Comunicação</h4><p>Conversar com familiares, amigos, colegas, clientes e grupos.</p></div>
+<div class="card"><h4>Informação</h4><p>Acompanhar notícias, páginas institucionais, especialistas e acontecimentos locais.</p></div>
+<div class="card"><h4>Entretenimento</h4><p>Assistir vídeos, memes, lives, transmissões, música, humor e curiosidades.</p></div>
+<div class="card"><h4>Aprendizagem</h4><p>Seguir canais educativos, tutoriais, aulas curtas, comunidades e perfis de estudo.</p></div>
+<div class="card"><h4>Trabalho</h4><p>Divulgar serviços, criar portfólio, ampliar contatos profissionais e encontrar oportunidades.</p></div>
+<div class="card"><h4>Participação social</h4><p>Acompanhar causas, campanhas, eventos, projetos comunitários e instituições públicas.</p></div>
+</div>
+<div class="callout warn">
+<strong>Importante:</strong> rede social não é apenas diversão. Ela pode influenciar reputação, relações familiares, oportunidades profissionais, consumo, opinião política, segurança e privacidade. Por isso, aprender a usar bem é tão importante quanto aprender a postar.
+  </div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Explique com suas palavras por que uma rede social pode ser comparada a uma praça digital.<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-conceito-praca"></div></div></section>
+<section class="page" id="historia">
+<div class="eyebrow">Capítulo 2</div>
+<h2>Breve evolução das redes sociais</h2>
+<p>As redes sociais surgiram da combinação entre internet, computadores pessoais, celulares, câmeras digitais e plataformas de publicação. Antes delas, a comunicação digital era mais centrada em e-mails, fóruns, salas de bate-papo e sites estáticos. Com o tempo, a internet se tornou mais participativa: os próprios usuários passaram a criar conteúdo em grande escala.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Fase</th><th>Características</th><th>Exemplos de uso</th></tr></thead>
+<tbody>
+<tr><td>Comunicação inicial</td><td>E-mail, fóruns, chats e listas de discussão.</td><td>Troca de mensagens, debates e grupos temáticos.</td></tr>
+<tr><td>Perfis pessoais</td><td>Usuários criam páginas pessoais e adicionam amigos.</td><td>Apresentar interesses, fotos e contatos.</td></tr>
+<tr><td>Feed social</td><td>Conteúdo passa a aparecer em sequência organizada pela plataforma.</td><td>Ver atualizações de amigos, páginas e grupos.</td></tr>
+<tr><td>Era móvel</td><td>Smartphone torna a rede social permanente no bolso.</td><td>Fotos instantâneas, mensagens, localização e vídeos curtos.</td></tr>
+<tr><td>Vídeo e algoritmo</td><td>Vídeos curtos, recomendações automáticas e criadores de conteúdo.</td><td>Reels, Shorts, TikTok, lives e monetização.</td></tr>
+<tr><td>IA e personalização</td><td>Sistemas sugerem posts, legendas, filtros, moderação e anúncios.</td><td>Recomendações, assistentes de escrita, edição de imagem e vídeo.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Hoje, uma rede social não é apenas um local onde pessoas se encontram. Ela é também um sistema de mídia, publicidade, comércio, entretenimento, comunicação, reputação e análise de comportamento. Por isso, o usuário iniciante precisa aprender tanto a usar os botões quanto a compreender o ambiente em que está navegando.</p>
+</section>
+<section class="page" id="vocabulario">
+<div class="eyebrow">Capítulo 3</div>
+<h2>Vocabulário essencial das redes sociais</h2>
+<p>Antes de operar uma plataforma, é necessário dominar os termos básicos. Eles aparecem em quase todas as redes sociais, mesmo que cada aplicativo use nomes ligeiramente diferentes.</p>
+<div class="grid two">
+<div class="card"><h4>Perfil</h4><p>É a página principal de uma pessoa. Normalmente contém foto, nome, biografia, publicações e informações de contato.</p></div>
+<div class="card"><h4>Feed</h4><p>É a área onde aparecem publicações recomendadas, conteúdos de pessoas seguidas, páginas, grupos ou anúncios.</p></div>
+<div class="card"><h4>Postagem ou post</h4><p>É qualquer conteúdo publicado: texto, foto, vídeo, link, enquete, áudio ou carrossel de imagens.</p></div>
+<div class="card"><h4>Curtida ou reação</h4><p>É uma forma rápida de demonstrar que você gostou, apoiou, achou engraçado ou reagiu a um conteúdo.</p></div>
+<div class="card"><h4>Comentário</h4><p>É uma resposta pública ou semipública feita em uma publicação. Deve ser usado com responsabilidade.</p></div>
+<div class="card"><h4>Compartilhamento</h4><p>É quando você repassa um conteúdo para outras pessoas, no seu perfil, em um grupo ou por mensagem.</p></div>
+<div class="card"><h4>Seguir</h4><p>É acompanhar as publicações de uma pessoa, página, canal ou perfil.</p></div>
+<div class="card"><h4>Mensagem direta</h4><p>É uma conversa privada ou restrita entre usuários. Também pode ser chamada de direct, inbox ou DM.</p></div>
+<div class="card"><h4>Stories, Status ou publicações temporárias</h4><p>São conteúdos que geralmente ficam visíveis por tempo limitado, muito usados para rotina, avisos e bastidores.</p></div>
+<div class="card"><h4>Reels, Shorts e vídeos curtos</h4><p>São formatos de vídeo vertical, normalmente feitos para consumo rápido pelo celular.</p></div>
+<div class="card"><h4>Hashtag</h4><p>É uma palavra precedida de #, usada para agrupar temas, como #educacao, #tecnologia ou #receitas.</p></div>
+<div class="card"><h4>Algoritmo</h4><p>É o sistema que decide quais conteúdos aparecem para cada usuário, com base em interesses, interações e padrões de uso.</p></div>
+</div>
+<div class="callout">
+<strong>Regra de leitura:</strong> sempre que aparecer um botão, pense em três perguntas: o que esse botão faz, quem verá o resultado e se a ação pode ser desfeita.
+  </div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Escolha cinco termos do vocabulário e escreva uma frase de exemplo para cada um.<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-vocab-termos"></div></div></section>
+<section class="page" id="navegador-app">
+<div class="eyebrow">Capítulo 4</div>
+<h2>Acesso pelo navegador e pelo aplicativo</h2>
+<p>As redes sociais podem ser acessadas de duas formas principais: pelo navegador de internet ou pelo aplicativo instalado no smartphone. O conteúdo é parecido, mas a experiência de uso muda.</p>
+<div class="grid two">
+<div class="figure">
+<div class="figure-title">Acesso pelo navegador no computador</div>
+<div class="desktop-ui">
+<div class="browser-bar">
+<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+<div class="url">https://www.exemplo.com</div>
+</div>
+<div class="feed-ui">
+<div class="side-menu">
+<div class="menu-line" style="width:80%"></div>
+<div class="menu-line" style="width:65%"></div>
+<div class="menu-line" style="width:70%"></div>
+<div class="menu-line" style="width:55%"></div>
+</div>
+<div>
+<div class="post-card">
+<span class="avatar"></span><b>Perfil do usuário</b>
+<div class="image-placeholder">Publicação</div>
+<div class="text-line" style="width:94%"></div>
+<div class="text-line" style="width:70%"></div>
+</div>
+</div>
+<div class="right-panel">
+<div class="menu-line" style="width:75%"></div>
+<div class="menu-line" style="width:60%"></div>
+<div class="menu-line" style="width:90%"></div>
+</div>
+</div>
+</div>
+<p class="caption">No computador, a tela é maior e facilita digitar textos longos, organizar páginas, editar perfil e configurar segurança.</p>
+</div>
+<div class="figure">
+<div class="figure-title">Acesso pelo aplicativo no smartphone</div>
+<div class="phone">
+<div class="phone-screen">
+<div class="phone-top">Redes Sociais</div>
+<div class="app-grid">
+<div class="app"><div class="app-icon" style="background:#1877f2">F</div>Facebook</div>
+<div class="app"><div class="app-icon" style="background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af)">IG</div>Instagram</div>
+<div class="app"><div class="app-icon" style="background:#128c7e">WA</div>WhatsApp</div>
+<div class="app"><div class="app-icon" style="background:#e62117">YT</div>YouTube</div>
+<div class="app"><div class="app-icon" style="background:#111">TT</div>TikTok</div>
+<div class="app"><div class="app-icon" style="background:#0a66c2">in</div>LinkedIn</div>
+<div class="app"><div class="app-icon" style="background:#111">X</div>X</div>
+<div class="app"><div class="app-icon" style="background:#bd081c">P</div>Pinterest</div>
+<div class="app"><div class="app-icon" style="background:#222">T</div>Threads</div>
+</div>
+</div>
+</div>
+<p class="caption">No smartphone, o uso é mais rápido, com câmera, microfone, notificações, localização e publicação instantânea.</p>
+</div>
+</div>
+<h3>Comparação prática</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Aspecto</th><th>Navegador</th><th>Aplicativo</th></tr></thead>
+<tbody>
+<tr><td>Acesso</td><td>Digite o endereço do site no Chrome, Edge, Firefox ou Safari.</td><td>Toque no ícone do aplicativo instalado no celular.</td></tr>
+<tr><td>Digitação</td><td>Mais confortável para textos longos.</td><td>Mais prático para mensagens rápidas e legendas curtas.</td></tr>
+<tr><td>Fotos e vídeos</td><td>Geralmente exige enviar arquivo salvo no computador.</td><td>Permite usar câmera, galeria, filtros e microfone com facilidade.</td></tr>
+<tr><td>Notificações</td><td>Podem aparecer no navegador, mas costumam ser menos usadas.</td><td>Aparecem na tela do celular, com alertas sonoros ou visuais.</td></tr>
+<tr><td>Segurança</td><td>Exige cuidado com sites falsos e computadores compartilhados.</td><td>Exige cuidado com permissões, bloqueio de tela e aplicativos oficiais.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn">
+<strong>Cuidado em computadores públicos:</strong> não marque “manter conectado” em lan houses, bibliotecas ou computadores de terceiros. Ao terminar, saia da conta e feche o navegador.
+  </div>
+</section>
+<section class="page" id="perfil">
+<div class="eyebrow">Capítulo 5</div>
+<h2>Perfil, identidade digital e primeira configuração</h2>
+<p>O perfil é a identidade do usuário dentro da rede social. Ele pode ser pessoal, profissional, institucional ou comercial. Para o iniciante, o mais importante é configurar o perfil com equilíbrio: informação suficiente para ser reconhecido, mas sem exposição desnecessária.</p>
+<div class="figure">
+<div class="figure-title">Modelo didático de perfil</div>
+<div class="desktop-ui">
+<div style="height:120px;background:linear-gradient(135deg,#dce6ff,#ffe4d7)"></div>
+<div style="padding:18px; display:grid; grid-template-columns:110px 1fr; gap:16px; align-items:start">
+<div style="width:96px;height:96px;border-radius:34px;background:#3157d5;color:#fff;display:grid;place-items:center;font-size:2rem;font-weight:900;margin-top:-54px;border:5px solid #fff">EU</div>
+<div>
+<h3 style="margin:0">Nome do aluno</h3>
+<p style="margin:4px 0;color:#5b667a">@usuario_exemplo</p>
+<p style="margin:8px 0">Biografia curta: estudo, trabalho, interesses ou descrição pessoal.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<span class="badge">Editar perfil</span><span class="badge">Privacidade</span><span class="badge">Segurança</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h3>Elementos do perfil</h3>
+<div class="grid two">
+<div class="card"><h4>Nome</h4><p>Identifica você para amigos, familiares, colegas ou clientes. Em redes profissionais, use nome real ou nome de trabalho.</p></div>
+<div class="card"><h4>Nome de usuário</h4><p>É o identificador com @. Deve ser simples, fácil de escrever e, se possível, parecido com seu nome ou marca.</p></div>
+<div class="card"><h4>Foto de perfil</h4><p>Ajuda as pessoas a reconhecerem sua conta. Evite imagens confusas, ofensivas ou que exponham outras pessoas sem autorização.</p></div>
+<div class="card"><h4>Biografia</h4><p>Pequeno texto de apresentação. Pode incluir profissão, cidade aproximada, interesse ou objetivo, mas sem dados sensíveis.</p></div>
+<div class="card"><h4>Links</h4><p>Algumas redes permitem adicionar link para site, portfólio, loja, canal ou outra rede. Verifique se o link está correto.</p></div>
+<div class="card"><h4>Privacidade</h4><p>Define se qualquer pessoa pode ver o perfil ou se apenas seguidores/amigos aprovados podem acompanhar suas publicações.</p></div>
+</div>
+<div class="callout danger">
+<strong>Evite colocar no perfil:</strong> endereço completo, rotina diária detalhada, documentos, telefone pessoal aberto, escola de crianças, fotos de cartões, placas de carro, localização exata da casa e informações financeiras.
+  </div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Quais informações você considera adequadas e inadequadas para aparecerem em um perfil pessoal?<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-perfil-info"></div></div></section>
+<section class="page" id="publicar">
+<div class="eyebrow">Capítulo 6</div>
+<h2>Como publicar e interagir</h2>
+<p>Publicar é tornar um conteúdo disponível para outras pessoas. A publicação pode ser simples, como uma frase, ou mais elaborada, como um vídeo, um álbum, um carrossel de imagens ou uma transmissão ao vivo.</p>
+<h3>Metodologia básica antes de publicar</h3>
+<div class="mini-flow">
+<div class="flow-item"><b>1. Objetivo</b><p>Por que vou postar? Informar, registrar, divulgar, aprender ou conversar?</p></div>
+<div class="flow-item"><b>2. Público</b><p>Quem poderá ver? Amigos, seguidores, público geral, grupo ou contatos específicos?</p></div>
+<div class="flow-item"><b>3. Conteúdo</b><p>O texto, imagem ou vídeo expõe alguém? Tem informação sensível?</p></div>
+<div class="flow-item"><b>4. Revisão</b><p>Há erro, ofensa, exagero, notícia falsa ou link suspeito?</p></div>
+<div class="flow-item"><b>5. Publicação</b><p>Depois de postar, acompanhe comentários e reações com responsabilidade.</p></div>
+</div>
+<h3>Ações comuns</h3>
+<div class="grid three">
+<div class="card"><h4>Curtir</h4><p>Ação simples de reação. Mesmo parecendo pequena, ela pode indicar preferência ao algoritmo.</p></div>
+<div class="card"><h4>Comentar</h4><p>Participação visível em uma conversa. Deve ser usada com educação, clareza e respeito.</p></div>
+<div class="card"><h4>Compartilhar</h4><p>Leva o conteúdo para outras pessoas. Antes de compartilhar, verifique se é verdadeiro e adequado.</p></div>
+<div class="card"><h4>Salvar</h4><p>Guarda o conteúdo para consultar depois. Útil para receitas, dicas, aulas e referências.</p></div>
+<div class="card"><h4>Seguir</h4><p>Faz com que o conteúdo de alguém apareça com mais frequência para você.</p></div>
+<div class="card"><h4>Denunciar</h4><p>Comunica à plataforma que um conteúdo pode violar regras, aplicar golpe ou causar dano.</p></div>
+</div>
+<h3>Diferença entre público, privado e restrito</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Tipo</th><th>Quem vê</th><th>Quando usar</th></tr></thead>
+<tbody>
+<tr><td>Público</td><td>Qualquer pessoa, inclusive fora da sua lista de amigos ou seguidores.</td><td>Divulgação profissional, conteúdo educativo, perfil público ou página.</td></tr>
+<tr><td>Privado</td><td>Apenas seguidores/amigos aprovados, dependendo da plataforma.</td><td>Uso pessoal, família, amigos e menor exposição.</td></tr>
+<tr><td>Restrito</td><td>Grupo, lista, amigos próximos ou contatos selecionados.</td><td>Compartilhar algo apenas com pessoas específicas.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Antes de publicar, quais três perguntas você deve fazer para evitar exposição desnecessária?<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-publicar-perguntas"></div></div></section>
+<section class="page" id="plataformas">
+<div class="eyebrow">Capítulo 7</div>
+<h2>Principais plataformas de redes sociais</h2>
+<p>As plataformas abaixo são exemplos relevantes para o usuário iniciante. Elas não são iguais: cada uma possui linguagem, público, formato de conteúdo e recursos próprios.</p>
+<div class="grid two">
+<div class="card social-card">
+<div class="social-brand">F</div>
+<div><h4>Facebook</h4><p>Rede voltada a perfis pessoais, páginas, grupos, eventos, comunidades e compartilhamento de textos, fotos, vídeos e links.</p><p><strong>Uso básico:</strong> adicionar amigos, seguir páginas, participar de grupos e ajustar quem pode ver suas publicações.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand ig">IG</div>
+<div><h4>Instagram</h4><p>Rede visual voltada para fotos, vídeos, stories, reels, mensagens diretas e perfis pessoais ou profissionais.</p><p><strong>Uso básico:</strong> publicar no feed, criar stories, assistir reels, seguir perfis e controlar se a conta é pública ou privada.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand wa">WA</div>
+<div><h4>WhatsApp</h4><p>Aplicativo de mensagens com conversas individuais, grupos, comunidades, status, chamadas de voz e vídeo.</p><p><strong>Uso básico:</strong> enviar mensagens, áudios, fotos, documentos, participar de grupos e configurar privacidade do status.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand yt">YT</div>
+<div><h4>YouTube</h4><p>Plataforma de vídeos, canais, playlists, comentários, lives e vídeos curtos chamados Shorts.</p><p><strong>Uso básico:</strong> pesquisar vídeos, inscrever-se em canais, criar playlists, comentar e publicar vídeos quando tiver canal.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand tt">TT</div>
+<div><h4>TikTok</h4><p>Rede de vídeos curtos, com feed de recomendação, edição rápida, sons, efeitos, duetos, costuras e lives.</p><p><strong>Uso básico:</strong> assistir ao feed, seguir criadores, publicar vídeos, ajustar comentários, mensagens e privacidade da conta.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand x">X</div>
+<div><h4>X</h4><p>Rede voltada para publicações rápidas, notícias, debates, mensagens diretas, repostagens e acompanhamento de assuntos em tempo real.</p><p><strong>Uso básico:</strong> postar textos curtos, seguir perfis, responder, repostar e escolher entre posts públicos ou protegidos.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand in">in</div>
+<div><h4>LinkedIn</h4><p>Rede profissional para currículo, contatos, vagas, empresas, publicações técnicas e reputação de carreira.</p><p><strong>Uso básico:</strong> montar perfil profissional, adicionar conexões, publicar aprendizados, buscar vagas e controlar visibilidade pública.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand th">Th</div>
+<div><h4>Threads</h4><p>Aplicativo da Meta ligado ao Instagram, voltado a conversas em texto, respostas, repostagens e debates públicos.</p><p><strong>Uso básico:</strong> publicar ideias curtas, responder conversas, seguir pessoas e ajustar se o perfil será público ou privado.</p></div>
+</div>
+<div class="card social-card">
+<div class="social-brand pin">P</div>
+<div><h4>Pinterest</h4><p>Rede visual para buscar ideias, salvar referências, criar pastas e organizar inspirações por temas.</p><p><strong>Uso básico:</strong> pesquisar imagens, salvar Pins, criar pastas, enviar imagens e ajustar privacidade do perfil.</p></div>
+</div>
+</div>
+<h3>Como escolher qual rede usar?</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Objetivo do aluno</th><th>Redes mais adequadas</th><th>Observação</th></tr></thead>
+<tbody>
+<tr><td>Conversar com familiares e grupos</td><td>WhatsApp, Facebook</td><td>Cuide de golpes em grupos e mensagens encaminhadas.</td></tr>
+<tr><td>Ver fotos, vídeos e bastidores</td><td>Instagram, Facebook</td><td>Configure bem a privacidade da conta.</td></tr>
+<tr><td>Assistir aulas e tutoriais</td><td>YouTube, TikTok, Instagram</td><td>Verifique a credibilidade de quem ensina.</td></tr>
+<tr><td>Divulgar serviço local</td><td>Instagram, Facebook, WhatsApp, Google Perfil da Empresa</td><td>Use informações claras, fotos próprias e respostas educadas.</td></tr>
+<tr><td>Construir imagem profissional</td><td>LinkedIn, YouTube, Instagram</td><td>Evite misturar conteúdos pessoais demais com perfil profissional.</td></tr>
+<tr><td>Buscar ideias de decoração, receitas e projetos</td><td>Pinterest, YouTube, Instagram</td><td>Salve referências e organize por pastas ou playlists.</td></tr>
+<tr><td>Acompanhar notícias em tempo real</td><td>X, YouTube, Instagram, Threads</td><td>Confirme informações em veículos confiáveis antes de compartilhar.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="page" id="tutoriais">
+<div class="eyebrow">Capítulo 8</div>
+<h2>Tutoriais básicos por tipo de acesso</h2>
+<p class="lead">Nesta seção, o aluno aprende a entrar nas principais redes sociais tanto pelo navegador quanto pelo aplicativo, com foco em procedimentos básicos e segurança.</p>
+<h3>Antes de começar (vale para qualquer rede)</h3>
+<div class="steps">
+<div class="step"><div><strong>Use sempre o canal oficial.</strong><br/>No navegador, digite o endereço manualmente. No celular, instale apenas pela loja oficial.</div></div>
+<div class="step"><div><strong>Confirme a conta correta.</strong><br/>Verifique se você está entrando no seu perfil e não em perfil de outra pessoa no mesmo aparelho.</div></div>
+<div class="step"><div><strong>Proteja o acesso.</strong><br/>Ative senha forte e autenticação em duas etapas quando disponível.</div></div>
+<div class="step"><div><strong>Saia da conta em aparelho compartilhado.</strong><br/>Essa etapa evita que outra pessoa publique ou acesse mensagens em seu nome.</div></div>
+</div>
+<h3>Facebook</h3>
+<div class="grid two">
+<div class="card">
+<h4>Pelo navegador</h4>
+<ol>
+<li>Abra o navegador e acesse <strong>facebook.com</strong>.</li>
+<li>Informe e-mail/telefone e senha.</li>
+<li>Clique na sua foto para abrir o perfil e revisar configurações.</li>
+<li>Para publicar, use o campo <strong>No que voce esta pensando?</strong>.</li>
+</ol>
+</div>
+<div class="card">
+<h4>Pelo aplicativo</h4>
+<ol>
+<li>Instale <strong>Facebook</strong> pela Play Store ou App Store.</li>
+<li>Entre com sua conta e confirme alerta de login, se aparecer.</li>
+<li>Use a aba de menu para acessar privacidade e seguranca.</li>
+<li>Toque em <strong>Publicar</strong> para criar texto, foto ou video.</li>
+</ol>
+</div>
+</div>
+<h3>Instagram</h3>
+<div class="grid two">
+<div class="card">
+<h4>Pelo navegador</h4>
+<ol>
+<li>Acesse <strong>instagram.com</strong> no navegador.</li>
+<li>Faça login com usuario, e-mail ou telefone.</li>
+<li>Entre no perfil e confira conta publica ou privada.</li>
+<li>Use o botao <strong>Criar</strong> para publicar foto/video quando disponivel.</li>
+</ol>
+</div>
+<div class="card">
+<h4>Pelo aplicativo</h4>
+<ol>
+<li>Instale <strong>Instagram</strong> na loja oficial.</li>
+<li>Entre na conta e ative autenticacao em duas etapas.</li>
+<li>Toque em <strong>+</strong> para feed, story ou reel.</li>
+<li>Defina publico, legenda e marcacoes antes de compartilhar.</li>
+</ol>
+</div>
+</div>
+<h3>YouTube</h3>
+<div class="grid two">
+<div class="card">
+<h4>Pelo navegador</h4>
+<ol>
+<li>Acesse <strong>youtube.com</strong> e faça login com conta Google.</li>
+<li>Use a pesquisa para encontrar canais e playlists.</li>
+<li>Inscreva-se em canais confiaveis para organizar estudos.</li>
+<li>Para enviar video, use o icone <strong>Criar</strong> no topo.</li>
+</ol>
+</div>
+<div class="card">
+<h4>Pelo aplicativo</h4>
+<ol>
+<li>Instale <strong>YouTube</strong> pela loja oficial.</li>
+<li>Entre com sua conta Google.</li>
+<li>Use <strong>Inicio</strong>, <strong>Inscricoes</strong> e <strong>Biblioteca</strong> para navegar.</li>
+<li>Toque em <strong>+</strong> para enviar video ou criar Short.</li>
+</ol>
+</div>
+</div>
+<h3>TikTok</h3>
+<div class="grid two">
+<div class="card">
+<h4>Pelo navegador</h4>
+<ol>
+<li>Acesse <strong>tiktok.com</strong>.</li>
+<li>Faça login para seguir contas e interagir.</li>
+<li>Use busca por tema para encontrar conteudos educativos.</li>
+<li>Evite clicar em links externos de perfis desconhecidos.</li>
+</ol>
+</div>
+<div class="card">
+<h4>Pelo aplicativo</h4>
+<ol>
+<li>Instale <strong>TikTok</strong> na loja oficial.</li>
+<li>Entre na conta e revise privacidade do perfil.</li>
+<li>Toque em <strong>+</strong> para gravar ou publicar video.</li>
+<li>Controle quem pode comentar, baixar e fazer dueto.</li>
+</ol>
+</div>
+</div>
+<h3>WhatsApp</h3>
+<div class="grid two">
+<div class="card">
+<h4>Pelo navegador (Web)</h4>
+<ol>
+<li>Acesse <strong>web.whatsapp.com</strong>.</li>
+<li>No celular, abra WhatsApp e toque em <strong>Aparelhos conectados</strong>.</li>
+<li>Leia o QR Code da tela do computador.</li>
+<li>Ao terminar, desconecte o aparelho se for computador de terceiros.</li>
+</ol>
+</div>
+<div class="card">
+<h4>Pelo aplicativo</h4>
+<ol>
+<li>Instale <strong>WhatsApp Messenger</strong> pela loja oficial.</li>
+<li>Confirme numero e configure perfil.</li>
+<li>Ative verificacao em duas etapas (PIN).</li>
+<li>Revise privacidade de foto, recado, status e grupos.</li>
+</ol>
+</div>
+</div>
+<h3>LinkedIn</h3>
+<div class="grid two">
+<div class="card">
+<h4>Pelo navegador</h4>
+<ol>
+<li>Acesse <strong>linkedin.com</strong> e faça login.</li>
+<li>Complete foto, titulo profissional e resumo.</li>
+<li>Adicione experiencias, cursos e competencias.</li>
+<li>Publique um texto curto sobre estudo ou trabalho.</li>
+</ol>
+</div>
+<div class="card">
+<h4>Pelo aplicativo</h4>
+<ol>
+<li>Instale <strong>LinkedIn</strong> na loja oficial.</li>
+<li>Entre e revise visibilidade do perfil.</li>
+<li>Use busca para encontrar vagas, empresas e conexoes.</li>
+<li>Ative alertas de vaga e confirme contatos com criterio.</li>
+</ol>
+</div>
+</div>
+<div class="callout ok">
+<strong>Atalho mental para qualquer rede:</strong> entrar com seguranca, revisar privacidade, publicar com consciencia e sair da conta em aparelhos compartilhados.
+  </div>
+</section>
+<section class="page" id="privacidade">
+<div class="eyebrow">Capítulo 9</div>
+<h2>Privacidade e segurança nas redes sociais</h2>
+<p>Privacidade é o controle sobre quem vê suas informações. Segurança é o conjunto de medidas para evitar invasões, golpes, perda de conta e exposição indevida. As duas coisas caminham juntas.</p>
+<div class="figure">
+<div class="figure-title">Painel didático de configurações importantes</div>
+<div class="grid two">
+<div class="card soft"><h4>Conta privada</h4><p>Reduz a exposição pública das publicações em plataformas que permitem esse ajuste.</p></div>
+<div class="card soft"><h4>Autenticação em duas etapas</h4><p>Adiciona uma segunda confirmação além da senha, como código ou aplicativo autenticador.</p></div>
+<div class="card soft"><h4>Revisão de dispositivos conectados</h4><p>Permite remover celulares ou computadores desconhecidos que acessaram sua conta.</p></div>
+<div class="card soft"><h4>Bloquear, restringir ou silenciar</h4><p>Ajuda a reduzir contato indesejado, perseguição, spam ou comentários ofensivos.</p></div>
+</div>
+</div>
+<h3>Configurações básicas recomendadas</h3>
+<ul class="checklist">
+<li>Use senha única para cada rede social. Não repita a mesma senha do e-mail ou do banco.</li>
+<li>Ative autenticação em duas etapas sempre que a plataforma oferecer esse recurso.</li>
+<li>Cadastre e mantenha atualizados e-mail e telefone de recuperação.</li>
+<li>Confira quem pode ver suas publicações, stories, status, reels, vídeos e lista de amigos.</li>
+<li>Revise quem pode enviar mensagens diretas, comentar, marcar você ou adicionar você a grupos.</li>
+<li>Desative localização em tempo real quando não for necessária.</li>
+<li>Revise permissões do aplicativo no celular: câmera, microfone, contatos, fotos e localização.</li>
+<li>Atualize o aplicativo com frequência para receber correções de segurança.</li>
+<li>Não compartilhe códigos recebidos por SMS, WhatsApp, e-mail ou aplicativo autenticador.</li>
+<li>Desconfie de mensagens com urgência, ameaça, prêmio, dinheiro fácil ou pedido de ajuda financeira.</li>
+</ul>
+<h3>Bloquear, restringir, silenciar e denunciar</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Ação</th><th>O que faz</th><th>Quando usar</th></tr></thead>
+<tbody>
+<tr><td>Bloquear</td><td>Impede que uma pessoa veja ou interaja com você, dependendo da plataforma.</td><td>Assédio, golpe, perseguição, ameaça ou contato insistente.</td></tr>
+<tr><td>Restringir</td><td>Limita a interação sem necessariamente bloquear totalmente.</td><td>Quando você quer reduzir contato sem chamar atenção.</td></tr>
+<tr><td>Silenciar</td><td>Você deixa de ver conteúdo de alguém sem deixar de seguir.</td><td>Quando não quer conflito, mas deseja reduzir exposição ao conteúdo.</td></tr>
+<tr><td>Denunciar</td><td>Envia o caso para análise da plataforma.</td><td>Golpes, perfis falsos, discurso de ódio, nudez não consentida, ameaças ou spam.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Liste três configurações de privacidade que você revisaria hoje em uma rede social.<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-privacidade-revisao"></div></div></section>
+<section class="page" id="golpes">
+<div class="eyebrow">Capítulo 10</div>
+<h2>Principais perigos e golpes nas redes sociais</h2>
+<p>Grande parte dos golpes em redes sociais usa engenharia social. Isso significa que o criminoso tenta manipular emoções, pressa, medo, curiosidade, vaidade ou confiança para fazer a vítima clicar, pagar, informar dados ou entregar o controle da conta.</p>
+<div class="grid two">
+<div class="card"><h4>Phishing</h4><p>Mensagem falsa que imita empresa, banco, rede social ou suporte técnico para roubar login, senha ou código de verificação.</p></div>
+<div class="card"><h4>Perfil falso</h4><p>Conta que se passa por outra pessoa, loja, parente, celebridade ou instituição para enganar usuários.</p></div>
+<div class="card"><h4>Falsa promoção</h4><p>Oferta com preço absurdo, prêmio inexistente, sorteio falso ou promessa de brinde em troca de dados.</p></div>
+<div class="card"><h4>Golpe do suporte</h4><p>Alguém finge ser funcionário da plataforma e pede senha, código ou acesso remoto.</p></div>
+<div class="card"><h4>Golpe do parente ou amigo</h4><p>Criminoso usa conta clonada ou foto de conhecido e pede dinheiro com urgência.</p></div>
+<div class="card"><h4>Golpe romântico</h4><p>Cria vínculo emocional e depois pede dinheiro, presentes, dados ou imagens íntimas.</p></div>
+<div class="card"><h4>Investimento milagroso</h4><p>Promete lucro alto, rápido e garantido, geralmente com criptomoedas, apostas ou “robôs”.</p></div>
+<div class="card"><h4>Link malicioso</h4><p>Leva a página falsa, instalação de aplicativo perigoso ou roubo de dados.</p></div>
+</div>
+<div class="callout danger">
+<strong>Sinal de alerta:</strong> qualquer mensagem que peça senha, código de verificação, pagamento antecipado, clique urgente, instalação de aplicativo desconhecido ou segredo absoluto deve ser tratada como suspeita.
+  </div>
+<h3>Como se defender</h3>
+<ul class="checklist">
+<li>Confirme por outro canal antes de enviar dinheiro ou dados pessoais.</li>
+<li>Não clique em links recebidos de desconhecidos ou em mensagens com promessa exagerada.</li>
+<li>Digite o endereço oficial da plataforma diretamente no navegador.</li>
+<li>Não instale aplicativos fora da loja oficial do celular.</li>
+<li>Nunca informe códigos de autenticação a outra pessoa.</li>
+<li>Desconfie de perfis recém-criados, sem histórico, com poucas fotos ou comportamento estranho.</li>
+<li>Use autenticação em duas etapas e revise sessões conectadas.</li>
+<li>Denuncie perfis falsos e avise contatos quando perceber tentativa de golpe.</li>
+</ul>
+<h3>Checklist antes de confiar em um perfil</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Pergunta</th><th>Por que importa?</th></tr></thead>
+<tbody>
+<tr><td>O perfil tem histórico coerente?</td><td>Golpistas costumam criar contas recentes ou reaproveitar contas invadidas.</td></tr>
+<tr><td>O nome de usuário parece estranho?</td><td>Letras trocadas e números podem imitar marcas ou pessoas reais.</td></tr>
+<tr><td>Há pressão por urgência?</td><td>Urgência reduz a capacidade de pensar e verificar.</td></tr>
+<tr><td>Está pedindo código, senha ou Pix?</td><td>Esses pedidos são comuns em golpes.</td></tr>
+<tr><td>A oferta parece boa demais?</td><td>Promoções impossíveis geralmente são iscas.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Descreva um sinal de golpe que costuma aparecer em mensagens ou publicações.<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-golpes-sinal"></div></div></section>
+<section class="page" id="boas-praticas">
+<div class="eyebrow">Capítulo 11</div>
+<h2>Boas práticas de comportamento digital</h2>
+<p>Usar redes sociais também envolve cidadania digital. O usuário precisa compreender que uma postagem pode circular rapidamente, ser copiada, sair de contexto e permanecer online por muito tempo.</p>
+<div class="grid three">
+<div class="card ok"><h4>Pense antes de postar</h4><p>Pergunte se aquele conteúdo pode prejudicar você, outra pessoa, sua família, seu trabalho ou sua segurança.</p></div>
+<div class="card"><h4>Respeite imagem de terceiros</h4><p>Evite publicar fotos ou vídeos de outras pessoas sem autorização, principalmente crianças.</p></div>
+<div class="card"><h4>Cheque informações</h4><p>Antes de compartilhar notícia, confirme em fontes confiáveis. Boato também causa dano.</p></div>
+<div class="card"><h4>Evite discussões impulsivas</h4><p>Comentários agressivos podem gerar conflito, denúncia, processo ou prejuízo profissional.</p></div>
+<div class="card"><h4>Separe pessoal e profissional</h4><p>Quando necessário, tenha perfis, páginas ou canais com objetivos diferentes.</p></div>
+<div class="card"><h4>Cuide dos direitos autorais</h4><p>Não use música, vídeo, imagem ou texto de terceiros como se fossem seus.</p></div>
+</div>
+<h3>O que não publicar</h3>
+<ul class="checklist danger-list">
+<li>Documentos pessoais, cartões, boletos, comprovantes com dados visíveis.</li>
+<li>Fotos que revelem endereço, placa de carro, rotina de crianças ou ausência de casa.</li>
+<li>Mensagens de ódio, ameaças, humilhações ou exposição de terceiros.</li>
+<li>Conteúdos íntimos ou imagens de outras pessoas sem consentimento.</li>
+<li>Informações falsas, alarmistas ou sem fonte confiável.</li>
+<li>Senhas, códigos, QR Codes sensíveis ou prints de sistemas internos.</li>
+</ul>
+<h3>Uso produtivo das redes sociais</h3>
+<div class="callout ok">
+    Redes sociais podem ser ferramentas de aprendizado e trabalho quando usadas com método. O aluno pode seguir canais educativos, criar pastas de referências, participar de grupos de estudo, divulgar serviços, acompanhar instituições, aprender com tutoriais e construir uma presença digital responsável.
+  </div>
+<div class="answer-card"><strong>Registro do aluno:</strong> Escreva uma regra pessoal de convivência digital que você pretende aplicar.<div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-boas-praticas-regra"></div></div></section>
+<section class="page" id="atividades">
+<div class="eyebrow">Capítulo 12</div>
+<h2>Atividades práticas para o aluno</h2>
+<h3>Atividade 1: reconhecer os elementos de uma rede social</h3>
+<p>Abra uma rede social de sua escolha e identifique: perfil, feed, botão de publicar, área de pesquisa, notificações, mensagens, configurações e opção de sair da conta.</p>
+<h3>Atividade 2: revisar o próprio perfil</h3>
+<ul class="checklist">
+<li>Confira sua foto de perfil.</li>
+<li>Leia sua biografia e remova dados sensíveis.</li>
+<li>Verifique se a conta está pública ou privada.</li>
+<li>Veja quem pode comentar, marcar e enviar mensagens.</li>
+<li>Revise contas conectadas e dispositivos logados.</li>
+</ul>
+<h3>Atividade 3: criar uma publicação segura</h3>
+<p>Crie uma postagem simples com tema educativo, sem dados pessoais, sem localização exata e sem imagem de terceiros. Antes de publicar, responda: quem verá? O conteúdo é respeitoso? A informação está correta? Eu ficaria confortável se esse conteúdo fosse encaminhado para outras pessoas?</p>
+<h3>Atividade 4: simulação de golpe</h3>
+<p>Leia a mensagem abaixo e identifique os sinais de perigo:</p>
+<div class="callout danger">
+    “Parabéns! Você ganhou um prêmio exclusivo. Clique agora, informe seu CPF, senha e o código recebido por SMS. Oferta válida somente pelos próximos 5 minutos.”
+  </div>
+<p><strong>Sinais esperados:</strong> promessa de prêmio, urgência, pedido de dados pessoais, pedido de senha, pedido de código e link possivelmente falso.</p>
+<h3>Checklist final de segurança</h3>
+<ul class="checklist">
+<li>Minha senha é forte e diferente das outras contas.</li>
+<li>Ativei autenticação em duas etapas.</li>
+<li>Sei onde alterar privacidade da conta.</li>
+<li>Sei bloquear e denunciar perfis suspeitos.</li>
+<li>Não compartilho códigos de verificação.</li>
+<li>Não publico documentos, endereço ou rotina detalhada.</li>
+<li>Verifico notícias antes de compartilhar.</li>
+<li>Baixo aplicativos apenas pelas lojas oficiais.</li>
+<li>Desconfio de links, promoções e pedidos urgentes.</li>
+<li>Se uso computador compartilhado, sempre saio da conta.</li>
+</ul>
+</section>
+<section class="page" id="autoavaliacao">
+<div class="eyebrow">15. Fechamento</div>
+<h2>Autoavaliação</h2>
+<p class="lead">Marque os itens que você já consegue realizar com segurança. Use os itens não marcados como roteiro de revisão.</p>
+<div class="self-check">
+<label><input data-save-id="rs-auto-1" type="checkbox"/> <span>Consigo explicar o que é uma rede social e para que ela serve.</span></label>
+<label><input data-save-id="rs-auto-2" type="checkbox"/> <span>Consigo diferenciar perfil, página, canal, grupo e mensagem direta.</span></label>
+<label><input data-save-id="rs-auto-3" type="checkbox"/> <span>Consigo identificar feed, stories/status, vídeos curtos, comentários e compartilhamentos.</span></label>
+<label><input data-save-id="rs-auto-4" type="checkbox"/> <span>Consigo acessar uma rede social pelo navegador e pelo aplicativo oficial.</span></label>
+<label><input data-save-id="rs-auto-5" type="checkbox"/> <span>Consigo revisar informações públicas do meu perfil.</span></label>
+<label><input data-save-id="rs-auto-6" type="checkbox"/> <span>Consigo ajustar privacidade básica de publicações, mensagens e marcações.</span></label>
+<label><input data-save-id="rs-auto-7" type="checkbox"/> <span>Consigo explicar por que a autenticação em duas etapas aumenta a segurança.</span></label>
+<label><input data-save-id="rs-auto-8" type="checkbox"/> <span>Consigo reconhecer sinais de phishing, perfil falso, promoção falsa e golpe do suporte.</span></label>
+<label><input data-save-id="rs-auto-9" type="checkbox"/> <span>Consigo avaliar antes de compartilhar uma notícia, imagem ou link.</span></label>
+<label><input data-save-id="rs-auto-10" type="checkbox"/> <span>Consigo planejar uma publicação considerando objetivo, público, conteúdo e privacidade.</span></label>
+</div>
+<div class="answer-card">
+<strong>Reflexão final:</strong> qual foi o principal cuidado que você aprendeu e pretende aplicar no uso das redes sociais?
+    <div class="answer-box" contenteditable="true" data-placeholder="Digite sua reflexão final..." data-save-id="rs-reflexao-final"></div>
+</div>
+</section><section class="page" id="projeto-final">
+<div class="eyebrow">14. Aplicação prática</div>
+<h2>Projeto final: plano de uso consciente de uma rede social</h2>
+<p class="lead">O projeto final consiste em escolher uma rede social e elaborar um plano de uso responsável. O aluno pode criar um plano pessoal, profissional, educativo ou comunitário.</p>
+<div class="project-brief">
+<h3>Etapas do projeto</h3>
+<div class="steps">
+<div class="step"><div><strong>Escolha uma rede social.</strong><br/>Exemplo: Instagram, Facebook, WhatsApp, YouTube, TikTok, LinkedIn, Pinterest, Threads ou outra plataforma.</div></div>
+<div class="step"><div><strong>Defina o objetivo.</strong><br/>O uso será para estudo, divulgação de serviço, comunicação familiar, portfólio, entretenimento ou participação em comunidade?</div></div>
+<div class="step"><div><strong>Identifique o público.</strong><br/>Quem poderá ver ou interagir com o conteúdo?</div></div>
+<div class="step"><div><strong>Planeje três conteúdos.</strong><br/>Defina tema, formato, público e cuidado de privacidade para cada publicação.</div></div>
+<div class="step"><div><strong>Liste medidas de segurança.</strong><br/>Inclua senha forte, autenticação em duas etapas, revisão de dispositivos conectados e controle de comentários/mensagens.</div></div>
+</div>
+</div>
+<div class="answer-card">
+<strong>Rede escolhida e objetivo de uso:</strong>
+<div class="answer-box" contenteditable="true" data-placeholder="Ex.: Instagram para divulgar um serviço local com publicações educativas..." data-save-id="rs-projeto-objetivo"></div>
+</div>
+<div class="answer-card">
+<strong>Público-alvo e nível de privacidade:</strong>
+<div class="answer-box" contenteditable="true" data-placeholder="Descreva quem poderá ver o conteúdo e como a privacidade será configurada..." data-save-id="rs-projeto-publico"></div>
+</div>
+<div class="answer-card">
+<strong>Planejamento de três publicações:</strong>
+<div class="answer-box" contenteditable="true" data-placeholder="Post 1: tema, formato, legenda e cuidado. Post 2..." data-save-id="rs-projeto-posts"></div>
+</div>
+<div class="rubric">
+<h3>Critérios de avaliação</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Critério</th><th>O que observar</th><th>Desempenho esperado</th></tr></thead>
+<tbody>
+<tr><td>Clareza do objetivo</td><td>O aluno sabe por que está usando a rede.</td><td>Define finalidade concreta e público adequado.</td></tr>
+<tr><td>Uso correto dos conceitos</td><td>Emprega termos como perfil, feed, privacidade e interação.</td><td>Explica os termos com exemplos.</td></tr>
+<tr><td>Segurança</td><td>Inclui medidas contra invasão, golpe e exposição.</td><td>Prevê senha forte, 2FA, privacidade e verificação de links.</td></tr>
+<tr><td>Responsabilidade</td><td>Evita exposição, desinformação e conteúdos inadequados.</td><td>Planeja publicações conscientes e respeitosas.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section><section class="page" id="estudo-dirigido">
+<div class="eyebrow">13. Revisão orientada</div>
+<h2>Estudo dirigido</h2>
+<p class="lead">Use esta etapa para transformar a leitura em compreensão. Responda com exemplos concretos, evitando copiar frases inteiras da ficha.</p>
+<div class="answer-card">
+<strong>1. Conceito:</strong> qual é a diferença entre usar uma rede social para comunicação pessoal e usar uma rede social para divulgação profissional?
+    <div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-estudo-1"></div>
+</div>
+<div class="answer-card">
+<strong>2. Vocabulário:</strong> explique a relação entre feed, algoritmo e interação.
+    <div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-estudo-2"></div>
+</div>
+<div class="answer-card">
+<strong>3. Segurança:</strong> por que não se deve compartilhar códigos recebidos por SMS, WhatsApp, e-mail ou aplicativo autenticador?
+    <div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-estudo-3"></div>
+</div>
+<div class="answer-card">
+<strong>4. Privacidade:</strong> imagine que um aluno quer deixar seu perfil público. Quais cuidados ele deve tomar antes disso?
+    <div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-estudo-4"></div>
+</div>
+<div class="answer-card">
+<strong>5. Golpes:</strong> descreva uma mensagem suspeita e explique por que ela pode ser perigosa.
+    <div class="answer-box" contenteditable="true" data-placeholder="Digite sua resposta..." data-save-id="rs-estudo-5"></div>
+</div>
+</section><section class="page" id="glossario">
+<div class="eyebrow">Encerramento</div>
+<h2>Glossário básico</h2>
+<div class="grid two">
+<div class="card"><h4>Conta</h4><p>Cadastro usado para acessar uma plataforma.</p></div>
+<div class="card"><h4>Login</h4><p>Processo de entrada na conta usando e-mail, telefone, usuário e senha.</p></div>
+<div class="card"><h4>Senha forte</h4><p>Senha difícil de adivinhar, longa, única e não reutilizada.</p></div>
+<div class="card"><h4>Autenticação em duas etapas</h4><p>Camada extra de segurança além da senha.</p></div>
+<div class="card"><h4>Feed</h4><p>Lista de publicações exibida pela rede social.</p></div>
+<div class="card"><h4>Stories/Status</h4><p>Conteúdo temporário, geralmente visualizado por tempo limitado.</p></div>
+<div class="card"><h4>DM/Direct/InBox</h4><p>Mensagem direta entre usuários.</p></div>
+<div class="card"><h4>Hashtag</h4><p>Palavra com # usada para marcar um tema.</p></div>
+<div class="card"><h4>Algoritmo</h4><p>Sistema que organiza recomendações, feed e anúncios.</p></div>
+<div class="card"><h4>Phishing</h4><p>Golpe que tenta roubar dados por meio de páginas ou mensagens falsas.</p></div>
+<div class="card"><h4>Conta privada</h4><p>Conta com visibilidade restrita, conforme regras da plataforma.</p></div>
+<div class="card"><h4>Denúncia</h4><p>Envio de alerta à plataforma sobre conteúdo ou conta problemática.</p></div>
+</div>
+<h2 style="margin-top:38px">Referências consultadas</h2>
+<p>As referências abaixo foram usadas para conferir conceitos, recursos, privacidade, segurança e funcionamento básico de plataformas. Como redes sociais mudam com frequência, menus e nomes de botões podem variar.</p>
+<ol class="references">
+<li><a href="https://cartilha.cert.br/fasciculos/redes-sociais/fasciculo-redes-sociais.pdf">CERT.br — Fascículo Redes Sociais da Cartilha de Segurança para Internet.</a></li>
+<li><a href="https://cartilha.cert.br/">CERT.br — Cartilha de Segurança para Internet.</a></li>
+<li><a href="https://www.facebook.com/help/325807937506242">Facebook Help Center — Basic Privacy Settings &amp; Tools.</a></li>
+<li><a href="https://www.facebook.com/help/337881706729661">Facebook Help Center — Differences between Profiles, Pages and Groups.</a></li>
+<li><a href="https://help.instagram.com/285881641526716">Instagram Help Center — Managing Your Privacy Settings.</a></li>
+<li><a href="https://help.instagram.com/566810106808145">Instagram Help Center — Two-Factor Authentication.</a></li>
+<li><a href="https://support.google.com/youtube/answer/1646861">YouTube Help — Create a YouTube channel.</a></li>
+<li><a href="https://support.google.com/youtube/answer/57407">YouTube Help — Upload videos.</a></li>
+<li><a href="https://support.tiktok.com/en/using-tiktok/creating-videos">TikTok Help Center — Creating videos.</a></li>
+<li><a href="https://support.tiktok.com/en/account-and-privacy/account-privacy-settings">TikTok Help Center — Account privacy settings.</a></li>
+<li><a href="https://faq.whatsapp.com/3307102709559968">WhatsApp Help Center — Privacy settings.</a></li>
+<li><a href="https://faq.whatsapp.com/143990998547188">WhatsApp Help Center — Privacy Checkup.</a></li>
+<li><a href="https://help.x.com/en/safety-and-security/public-and-protected-posts">X Help Center — Public and protected posts.</a></li>
+<li><a href="https://help.x.com/en/using-x/direct-messages">X Help Center — Direct Messages.</a></li>
+<li><a href="https://www.linkedin.com/help/linkedin/answer/a1337839/managing-your-account-and-privacy-settings-overview">LinkedIn Help — Account and privacy settings.</a></li>
+<li><a href="https://www.linkedin.com/help/linkedin/answer/a518996">LinkedIn Help — Get started with posting.</a></li>
+<li><a href="https://help.pinterest.com/en/article/your-privacy-and-data-settings">Pinterest Help — Privacy and data settings.</a></li>
+<li><a href="https://help.pinterest.com/en/guide/guide-to-creating-pins">Pinterest Help — Guide to creating Pins.</a></li>
+<li><a href="https://help.instagram.com/788669719351544/">Threads Help Center — About Threads.</a></li>
+<li><a href="https://consumer.ftc.gov/scams">FTC Consumer Advice — Scams.</a></li>
+</ol>
+<div class="footer-note">
+    Material didático introdutório. Esta apostila não substitui as páginas oficiais de ajuda das plataformas nem orientações jurídicas, pedagógicas ou de segurança especializada. Em caso de golpe, invasão de conta, ameaça ou exposição indevida, registre evidências, altere senhas, acione os canais oficiais da plataforma e procure orientação adequada.
+  </div>
+</section>
+</div>
+</div>
+</section>
+</main>
+<script>
+    (function () {
+      const stage = document.getElementById("viewerStage");
+      const book = document.getElementById("bookPages");
+      const pages = Array.from(book.querySelectorAll(".page"));
+      const sidebarLinks = Array.from(document.querySelectorAll("#sidebarNav a"));
+      const topLinks = Array.from(document.querySelectorAll(".topbar .nav a"));
+      const prevBtn = document.getElementById("prevPage");
+      const nextBtn = document.getElementById("nextPage");
+      const status = document.getElementById("viewerStatus");
+      const scalePreference = document.getElementById("scalePreference");
+      const scaleNote = document.getElementById("scaleNote");
+
+      if (!stage || pages.length === 0 || !prevBtn || !nextBtn || !status) {
+        return;
+      }
+
+      function prepareContentWrappers() {
+        pages.forEach((page) => {
+          if (page.querySelector(":scope > .page-content")) {
+            return;
+          }
+          const wrapper = document.createElement("div");
+          wrapper.className = "page-content";
+          while (page.firstChild) {
+            wrapper.appendChild(page.firstChild);
+          }
+          page.appendChild(wrapper);
+        });
+      }
+
+      function isDesktopViewer() {
+        return window.matchMedia("(min-width: 1081px)").matches;
+      }
+
+      let activeIndex = 0;
+
+      function indexFromHash() {
+        const hash = window.location.hash.replace("#", "");
+        if (!hash) {
+          return 0;
+        }
+        const found = pages.findIndex((page) => page.id === hash);
+        return found >= 0 ? found : 0;
+      }
+
+      function fitActivePage() {
+        if (!isDesktopViewer()) {
+          stage.classList.remove("is-scaled");
+          stage.classList.remove("mode-reading", "mode-fit");
+          return;
+        }
+
+        const page = pages[activeIndex];
+        const content = page.querySelector(":scope > .page-content");
+        if (!content) {
+          return;
+        }
+
+        const preference = scalePreference ? scalePreference.value : "reading";
+        stage.classList.toggle("mode-reading", preference === "reading");
+        stage.classList.toggle("mode-fit", preference === "fit");
+        content.classList.toggle("tight-mode", preference === "fit");
+
+        if (preference === "reading") {
+          content.style.transform = "none";
+          content.style.width = "auto";
+          stage.classList.remove("is-scaled");
+          if (scaleNote) {
+            scaleNote.textContent = "Modo leitura · rolagem ativa";
+          }
+          return;
+        }
+
+        content.style.transform = "scale(1)";
+        content.style.width = "100%";
+
+        const paddingAllowance = 4;
+        const availableW = page.clientWidth - paddingAllowance;
+        const availableH = page.clientHeight - paddingAllowance;
+        const naturalW = content.scrollWidth;
+        const naturalH = content.scrollHeight;
+
+        if (!naturalW || !naturalH) {
+          return;
+        }
+
+        const ratioW = availableW / naturalW;
+        const ratioH = availableH / naturalH;
+        let scale = Math.min(1, ratioW, ratioH);
+
+        const minScale = 0.56;
+        scale = Math.max(minScale, scale);
+
+        const forcedFit = Math.min(1, ratioW, ratioH);
+        if (scale > forcedFit) {
+          scale = forcedFit;
+        }
+
+        content.style.transform = "scale(" + scale + ")";
+        content.style.width = (100 / scale) + "%";
+        stage.classList.toggle("is-scaled", scale < 0.999);
+
+        if (scaleNote) {
+          const percent = Math.round(scale * 100);
+          scaleNote.textContent = "Modo reduzido · " + percent + "%";
+        }
+      }
+
+      function syncActiveLinks() {
+        const id = pages[activeIndex].id;
+        sidebarLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+        });
+      }
+
+      function updateStatus() {
+        status.textContent = "Capítulo " + (activeIndex + 1) + " de " + pages.length;
+        prevBtn.disabled = activeIndex === 0;
+        nextBtn.disabled = activeIndex === pages.length - 1;
+      }
+
+      function showPage(index, updateHash) {
+        const nextIndex = Math.max(0, Math.min(pages.length - 1, index));
+        const hasPageChanged = nextIndex !== activeIndex;
+        activeIndex = nextIndex;
+
+        pages.forEach((page, i) => {
+          page.classList.toggle("active", i === activeIndex);
+          page.setAttribute("aria-hidden", i === activeIndex ? "false" : "true");
+          if (i === activeIndex && hasPageChanged) {
+            page.scrollTop = 0;
+          }
+        });
+
+        updateStatus();
+        syncActiveLinks();
+        fitActivePage();
+
+        if (updateHash) {
+          history.replaceState(null, "", "#" + pages[activeIndex].id);
+        }
+      }
+
+      function handleLinkClick(event) {
+        const href = event.currentTarget.getAttribute("href") || "";
+        if (!href.startsWith("#")) {
+          return;
+        }
+        const id = href.slice(1);
+        const idx = pages.findIndex((page) => page.id === id);
+        if (idx < 0) {
+          return;
+        }
+
+        if (isDesktopViewer()) {
+          event.preventDefault();
+          showPage(idx, true);
+        }
+      }
+
+      sidebarLinks.forEach((link) => link.addEventListener("click", handleLinkClick));
+      topLinks.forEach((link) => link.addEventListener("click", handleLinkClick));
+
+      prevBtn.addEventListener("click", () => showPage(activeIndex - 1, true));
+      nextBtn.addEventListener("click", () => showPage(activeIndex + 1, true));
+
+      if (scalePreference) {
+        scalePreference.addEventListener("change", () => {
+          showPage(activeIndex, false);
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (!isDesktopViewer()) {
+          return;
+        }
+        if (event.key === "ArrowRight") {
+          showPage(activeIndex + 1, true);
+        }
+        if (event.key === "ArrowLeft") {
+          showPage(activeIndex - 1, true);
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (!isDesktopViewer()) {
+          stage.classList.remove("is-scaled");
+          stage.classList.remove("mode-reading", "mode-fit");
+          pages.forEach((page) => {
+            const content = page.querySelector(":scope > .page-content");
+            if (content) {
+              content.style.transform = "none";
+              content.style.width = "auto";
+              content.classList.remove("tight-mode");
+            }
+            page.classList.add("active");
+            page.setAttribute("aria-hidden", "false");
+          });
+          return;
+        }
+
+        showPage(activeIndex, false);
+      });
+
+      prepareContentWrappers();
+      const initial = indexFromHash();
+      if (isDesktopViewer()) {
+        showPage(initial, false);
+      } else {
+        activeIndex = initial;
+        updateStatus();
+        syncActiveLinks();
+      }
+    })();
+  </script>
+
+<script>
+  (function () {
+    const STORAGE_PREFIX = "ficha-redes-sociais:";
+    function storageKey(id) {
+      return STORAGE_PREFIX + id;
+    }
+
+    document.querySelectorAll("[contenteditable][data-save-id]").forEach((box) => {
+      const key = storageKey(box.dataset.saveId);
+      const saved = localStorage.getItem(key);
+      if (saved !== null) {
+        box.innerHTML = saved;
+      }
+      box.addEventListener("input", () => {
+        localStorage.setItem(key, box.innerHTML);
+      });
+      box.addEventListener("paste", (event) => {
+        event.preventDefault();
+        const text = (event.clipboardData || window.clipboardData).getData("text/plain");
+        document.execCommand("insertText", false, text);
+      });
+    });
+
+    document.querySelectorAll("input[type='checkbox'][data-save-id]").forEach((check) => {
+      const key = storageKey(check.dataset.saveId);
+      const saved = localStorage.getItem(key);
+      if (saved !== null) {
+        check.checked = saved === "true";
+      }
+      check.addEventListener("change", () => {
+        localStorage.setItem(key, String(check.checked));
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      const active = document.activeElement;
+      const isWriting = active && (active.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(active.tagName));
+      if (isWriting && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", " "].includes(event.key)) {
+        event.stopPropagation();
+      }
+    }, true);
+  })();
+</script>
+</body>
+</html>
